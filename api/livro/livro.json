@@ -1,0 +1,17 @@
+[
+    {"numero": 1, "nome": "O pote vazio", "autor": "Demi", "editora": "Martins Fontes", "idioma": "Português",
+        "amazonUrl": "https://www.amazon.com.br/Pote-Vazio-V%C3%A1rios-Autores/dp/8533612176",
+        "fotoUrl": "https://images-na.ssl-images-amazon.com/images/I/51r7q%2B2Ft1L._SX491_BO1,204,203,200_.jpg"},
+    {"numero": 3, "nome": "Ou isto ou aquilo", "autor": "Cecília Meireles", "editora": "Global", "idioma": "Português",
+        "amazonUrl": "https://www.amazon.com.br/Ou-Isto-Aquilo-Cecília-Meireles/dp/8526017101/",
+        "fotoUrl": "https://images-na.ssl-images-amazon.com/images/I/51zykrE0H5L._SY395_BO1,204,203,200_.jpg"},
+    {"numero": 4, "nome": "O dia de Chu", "autor": "Neil Gaiman", "editora": "Rocco", "idioma": "Português",
+        "amazonUrl": "https://www.amazon.com.br/Dia-Chu-Neil-Gaiman/dp/8562500526",
+        "fotoUrl": "https://images-na.ssl-images-amazon.com/images/I/51IciR1-tiL._SX446_BO1,204,203,200_.jpg"},
+    {"numero": 5, "nome": "O grúfalo", "autor": "Julia Donaldson", "editora": "Brinque-Book", "idioma": "Português",
+        "amazonUrl": "https://www.amazon.com.br/Grúfalo-Julia-Donaldson/dp/8574120286",
+        "fotoUrl": "https://images-na.ssl-images-amazon.com/images/I/61h-eL53CvL._SX397_BO1,204,203,200_.jpg"},
+    {"numero": 7, "nome": "Hugo, a máquina de abraçar", "autor": "Lenice Bueno", "editora": "Salamandra", "idioma": "Português",
+        "amazonUrl": "https://www.amazon.com.br/Hugo-Máquina-Abraçar-Lenice-Bueno/dp/8516101312",
+        "fotoUrl": "https://images-na.ssl-images-amazon.com/images/I/41qWUOmjJSL._SX409_BO1,204,203,200_.jpg"}
+]
