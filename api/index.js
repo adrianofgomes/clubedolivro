@@ -23,7 +23,7 @@ exports.main = functions.https.onRequest(async(req, res) => {
     cargaLivros = require('./livro/livro.json');
     console.log("livros.json carregado" + cargaLivros);
   } catch(e) {
-    console.log("erro na carga de livros" + e);
+    console.log("erro na carga do arquivo livros.json" + e);
     next(e);
   }
   
@@ -35,45 +35,27 @@ exports.main = functions.https.onRequest(async(req, res) => {
       const livrosSnapshot = await db.collection('livros').get();
       const livros = [];
       livrosSnapshot.forEach((doc) => {
-        livros.push({
-          id: doc.id,
-          data: doc.data()
-        });
+        const livroAtual = doc.data();
+        livroAtual.id = doc.id;
+        livros.push(livroAtual);
       });
       if(livros.length > 0){
         console.log('base possui livros cadastrados. retornando lista de livros.');
         res.json(livros);
       } else {
-        console.log('base de livros vazia');
+        console.log('base de livros vazia. carregando...');
+        cargaLivros.forEach(async function(livro){
+          const livroRef = await db.collection('livros').add(livro);
+          console.log("Carregado livro: ", livroRef.id + " - " + livroRef.nome);
+        });
+        res.json({
+          'status': 'Carga de livros realizada!',
+          'data': Date.now()
+      });
       }
     } catch(e) {
       next(e);
     }
-    
-    cargaLivros.forEach(async function(livro){
-      const livroRef = await db.collection('livros').add(livro);
-      console.log("Carregado livro: ", livroRef.id + " - " + livroRef.nome);
-    });
-
-    /*var colecaoLivros = db.collection('livros');
-    colecaoLivros.count(function(err, count){
-      if(count === 0){
-        colecaoLivros.insertMany(livros, function(err, r){
-          if(err){
-            console.log('erro ao inserir livros');
-          }
-          console.log('livros incluídos com sucesso: ' + r.insertedCount);
-        });
-      } else {
-        console.log('coleção de livros já está carregada. não foi realizada nova carga de livros.')
-      }
-    });*/
   }
-
-  res.json({
-      'status': 'OK',
-      'data': Date.now()
-  });
-  
 });
 
