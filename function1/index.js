@@ -14,8 +14,6 @@ exports.helloWorld = (req, res) => {
 };
 
 exports.main = (req, res) => {
-  var db = admin.firestore();
-
   const db = admin.firestore();
   const data = { 'teste': 'teste' };
   const ref = await db.collection('notes').add(data);
