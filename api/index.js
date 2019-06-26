@@ -17,7 +17,16 @@ exports.main = functions.https.onRequest(async(req, res) => {
     console.log("Document written with ID: ", outraRef.id);
   })*/
 
-  const livros = require('./livro/livro.json');
+  console.log("carregando livros.json");
+  var livros = {};
+  try {
+    livros = require('./livro/livro.json');
+    console.log("livros.json carregado" + livros);
+  } catch(e) {
+    console.log("erro na carga de livros" + e);
+    next(e);
+  }
+  
 
   //Se a coleção de livros estiver vazia, carregar livros a partir do json
   console.log('Inicialização: verificando se precisar carregar lista de livros...');
