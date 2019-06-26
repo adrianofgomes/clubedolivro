@@ -13,7 +13,7 @@ exports.helloWorld = (req, res) => {
   res.status(200).send(message);
 };
 
-exports.main = (req, res) => {
+exports.main = functions.https.onRequest(async(req, res) => {
   const db = admin.firestore();
   const data = { 'teste': 'teste' };
   const ref = await db.collection('notes').add(data);
@@ -22,5 +22,5 @@ exports.main = (req, res) => {
       data
   });
   
-};
+});
 
