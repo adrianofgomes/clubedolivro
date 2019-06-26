@@ -18,10 +18,10 @@ exports.main = functions.https.onRequest(async(req, res) => {
   })*/
 
   console.log("carregando livros.json");
-  var livros = {};
+  var cargaLivros = {};
   try {
-    livros = require('./livro/livro.json');
-    console.log("livros.json carregado" + livros);
+    cargaLivros = require('./livro/livro.json');
+    console.log("livros.json carregado" + cargaLivros);
   } catch(e) {
     console.log("erro na carga de livros" + e);
     next(e);
@@ -29,10 +29,28 @@ exports.main = functions.https.onRequest(async(req, res) => {
   
 
   //Se a coleção de livros estiver vazia, carregar livros a partir do json
-  console.log('Inicialização: verificando se precisar carregar lista de livros...');
+  console.log('verificando se precisa carregar lista de livros...');
   if(db){
-
-    livros.forEach(async function(livro){
+    try {
+      const livrosSnapshot = await db.collection('livros').get();
+      const livros = [];
+      livrosSnapshot.forEach((doc) => {
+        livros.push({
+          id: doc.id,
+          data: doc.data()
+        });
+      });
+      if(livros.length > 0){
+        console.log('base possui livros cadastrados. retornando lista de livros.');
+        res.json(livros);
+      } else {
+        console.log('base de livros vazia');
+      }
+    } catch(e) {
+      next(e);
+    }
+    
+    cargaLivros.forEach(async function(livro){
       const livroRef = await db.collection('livros').add(livro);
       console.log("Carregado livro: ", livroRef.id + " - " + livroRef.nome);
     });
@@ -53,7 +71,8 @@ exports.main = functions.https.onRequest(async(req, res) => {
   }
 
   res.json({
-      'status': 'OK3',
+      'status': 'OK',
+      'data': Date.now()
   });
   
 });
