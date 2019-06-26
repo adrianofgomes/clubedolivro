@@ -7,7 +7,7 @@ exports.main = functions.https.onRequest((req, res) => {
   const data = [{ 'nome': 'abc' }, { 'nome': 'def' }];
 
   data.forEach(async function(obj){
-    const ref = await db.collection('notes').add(data);
+    const ref = await db.collection('notes').add(obj);
     console.log("Document written with ID: ", ref.id);
   })
 
