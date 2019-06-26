@@ -23,7 +23,7 @@ exports.main = functions.https.onRequest(async(req, res) => {
   console.log('Inicialização: verificando se precisar carregar lista de livros...');
   if(db){
 
-    dataList.forEach(async function(livro){
+    livros.forEach(async function(livro){
       const livroRef = await db.collection('livros').add(livro);
       console.log("Carregado livro: ", livroRef.id + " - " + livroRef.nome);
     });
