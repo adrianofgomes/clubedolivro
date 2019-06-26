@@ -9,14 +9,13 @@ exports.main = functions.https.onRequest(async(req, res) => {
   const data = { 'teste': 'teste' };
   const ref = await db.collection('notes').add(data);
 
-  const data = [{ 'nome': 'abc' }, { 'nome': 'def' }];
+  const dataList = [{ 'nome': 'abc' }, { 'nome': 'def' }];
 
-  data.forEach(async function(obj){
+  dataList.forEach(async function(obj){
     console.log("inserindo obj: " + obj);
-    const ref = await db.collection('outra').add(obj);
-    console.log("Document written with ID: ", ref.id);
+    const outraRef = await db.collection('outra').add(obj);
+    console.log("Document written with ID: ", outraRef.id);
   })
-
   
   res.json({
       'status': 'OK',
