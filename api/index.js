@@ -6,8 +6,8 @@ exports.main = functions.https.onRequest(async(req, res) => {
   console.log("iniciando função main");
   const db = admin.firestore();
 
-  //const data = { 'teste': 'teste' };
-  //const ref = await db.collection('notes').add(data);
+  const data = { 'teste': 'teste' };
+  const ref = await db.collection('notes').add(data);
 
   /*const dataList = [{ 'nome': 'abc' }, { 'nome': 'def' }];
 
@@ -53,7 +53,7 @@ exports.main = functions.https.onRequest(async(req, res) => {
   }
 
   res.json({
-      'status': 'OK2',
+      'status': 'OK3',
   });
   
 });
