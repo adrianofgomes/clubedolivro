@@ -3,6 +3,7 @@ const functions = require('firebase-functions');
 admin.initializeApp();
 
 exports.main = functions.https.onRequest((req, res) => {
+  console.log("iniciando função main");
   const db = admin.firestore();
   const data = [{ 'nome': 'abc' }, { 'nome': 'def' }];
 
